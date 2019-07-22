@@ -1,12 +1,15 @@
 package erp.forge.identity.network.message;
 
+import erp.forge.core.ERPCoreForge;
 import erp.forge.core.player.ERPlayer;
 import erp.forge.core.player.EnumProfile;
 import erp.forge.identity.ERPIdentityForge;
+import erp.forge.identity.ModConfig;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IThreadListener;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -69,6 +72,7 @@ public class MessageCreation implements IMessage, IMessageHandler<MessageCreatio
                 erPlayer.setIsMale(message.isMale);
                 erPlayer.setAge(message.age);
                 ERPIdentityForge.instance.getPacketChannel().sendTo(new MessageCloseGui(), player);
+                player.sendMessage(new TextComponentString(ModConfig.INSTANCE.welcomeMessage.replace("%firstname%", message.firstname).replace("%lastname%", message.lastname)));
             });
         }
         return null;

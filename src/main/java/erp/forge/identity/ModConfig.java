@@ -13,7 +13,7 @@ public class ModConfig {
 	
 	public transient static ModConfig INSTANCE;
 	
-	public boolean resetMoneyOnDeath = true;
+	public String welcomeMessage = "Welcome, %firstname% %lastname% to the server EssentialRP !";
 
 	public ModConfig(File configFile)
 	{

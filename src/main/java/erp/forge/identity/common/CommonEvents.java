@@ -16,9 +16,7 @@ public class CommonEvents {
     public void onPlayerLogIn(final PlayerEvent.PlayerLoggedInEvent event) {
         final EntityPlayerMP player = (EntityPlayerMP)event.player;
         ERPlayer erPlayer = new ERPlayer(player.getUniqueID());
-        ERPIdentityForge.logger.info("OK #1");
         if(!erPlayer.accountExist()){
-            ERPIdentityForge.logger.info("OK #2");
             ERPIdentityForge.instance.getPacketChannel().sendTo(new MessageSendGuiCreation(), player);
         }
     }
