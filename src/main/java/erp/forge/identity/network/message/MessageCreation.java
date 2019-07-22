@@ -1,6 +1,7 @@
 package erp.forge.identity.network.message;
 
 import erp.forge.core.player.ERPlayer;
+import erp.forge.core.player.EnumProfile;
 import erp.forge.identity.ERPIdentityForge;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -62,6 +63,7 @@ public class MessageCreation implements IMessage, IMessageHandler<MessageCreatio
             MinecraftServer server = player.getServer();
             server.addScheduledTask(() -> {
                 ERPlayer erPlayer = new ERPlayer(player.getUniqueID());
+                erPlayer.loadAccount();
                 erPlayer.setFirstname(message.firstname);
                 erPlayer.setLastname(message.lastname);
                 erPlayer.setIsMale(message.isMale);
